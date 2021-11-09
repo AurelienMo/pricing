@@ -52,7 +52,7 @@ services:
       - ./php/vhosts:/etc/apache2/sites-enabled
       - ../api:/var/www
       - ./logs:/var/log/apache2
-      - ./php/certs:/etc/apache2/ssl/
+      #- ./php/certs:/etc/apache2/ssl/
       - ./php/conf.ini/timezoneparis.ini:/usr/local/etc/php/conf.d/timezoneparis.ini
     restart: always
     environment:

@@ -2,7 +2,7 @@ CONTAINER_NAME = pricing
 DOCKER_COMPOSE = docker-compose
 DOCKER = docker
 USER_DOCKER = $$(id -u $${USER}):$$(id -g $${USER})
-DOCKER_PHP = $(DOCKER) exec -u $(USER_DOCKER) -it $(CONTAINER_NAME)_www sh -c
+DOCKER_PHP = $(DOCKER) exec -u $(USER_DOCKER) -it $(CONTAINER_NAME)custom_www sh -c
 SYMFONY = $(DOCKER_PHP) "php bin/console ${ARGS}"
 
 ##
