@@ -1,0 +1,64 @@
+version: "3.8"
+services:
+
+  db:
+    container_name: pricing_database
+    image: mysql:8.0
+    platform: linux/x86_64
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pricing
+    ports:
+      - '3311:3306'
+    volumes:
+      - './database/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - './mysql:/var/lib/mysql'
+    restart: always
+    networks:
+      - pricing
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: pricing_admindb
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8011:80"
+    environment:
+      PMA_HOST: db
+    networks:
+      - pricing
+
+  mail:
+    image: schickling/mailcatcher
+    container_name: pricing_mailcatcher
+    tty: true
+    command: mailcatcher --no-quit -f -v --ip=0.0.0.0
+    networks:
+      - pricing
+
+  www:
+    build:
+      context: php
+      dockerfile: Dockerfile
+      args:
+        web_vhost: https://api.dev.pricing.fr
+    container_name: pricingcustom_www
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./php/vhosts:/etc/apache2/sites-enabled
+      - ../api:/var/www
+      - ./logs:/var/log/apache2
+      - ./php/certs:/etc/apache2/ssl/
+      - ./php/conf.ini/timezoneparis.ini:/usr/local/etc/php/conf.d/timezoneparis.ini
+    restart: always
+    environment:
+      VIRTUAL_HOST: https://api.dev.pricing.fr
+    networks:
+      - pricing
+
+networks:
+  pricing:
