@@ -19,5 +19,5 @@ jobs:
           api_key: ${{secrets.HEROKU_API_KEY}}
           email: morvan.aurelien@gmail.com
           app_name: pricing-be
-          heroku_branch: "master"
-          subfolder: "dist-prod"
+          heroku_branch: "develop"
+          subfolder: "api"
