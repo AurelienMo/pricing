@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo github
-        env: { CONTENT: "${{toJson(github}}"}
+        env : { CONTENT : "${{ toJson(github) }}" }
         run : "echo $CONTENT"
 
   execute-ci:
