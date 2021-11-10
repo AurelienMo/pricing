@@ -12,5 +12,4 @@ api/public/bundles/
 api/var/
 api/vendor/
 ###< symfony/framework-bundle ###
-api/public/.htaccess
 api/phpstan-results.json
