@@ -1,0 +1,48 @@
+name: CI/CD
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - closed
+  release:
+    types: [released]
+
+env:
+  PATH_RELEASES: "api"
+
+jobs:
+  setup-env:
+    name: Debug
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo github
+        env: { CONTENT: "${{toJson(github}}"}
+        run : "echo $CONTENT"
+
+  execute-ci:
+    name: CI
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action != 'closed' && contains(toJson('["develop", "master"]'), github.base_ref)
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8'
+          extensions: imagick gd bcmath intl zip
+          tools: composer:v1
+
+      - name: Install dependencies
+        run: |
+          cd ${{ env.PATH_RELEASES }}/
+          composer install --no-interaction --no-progress --no-suggest
+
+      - name: PHPStan Static Analysis
+        run: |
+          cd ${{ env.PATH_RELEASES }}/ && vendor/bin/phpstan --error-format=prettyJson > phpstan-results.json || true
