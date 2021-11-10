@@ -14,10 +14,9 @@ jobs:
       # possibly setup node action here...
       # possibly cache of node modules action here...
       # build steps here...
-      - uses: onekiloparsec/heroku-node-deploy-subfolder@v1.1.0
+      - uses: akhileshhns/heroku-deploy@v3.12.12
         with:
           api_key: ${{secrets.HEROKU_API_KEY}}
           email: morvan.aurelien@gmail.com
           app_name: pricing-be
-          heroku_branch: "develop"
-          subfolder: "api"
+          appdir: "api"
