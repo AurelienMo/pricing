@@ -20,10 +20,6 @@ final class RegisterAction
         $req = $this->serializer->deserialize($request->getContent(), RegisterDTO::class, 'json');
         $registerUseCase->execute($req, $registerPresenter);
 
-        return new Response(
-            $registerPresenter->getData(),
-            $registerPresenter->getStatusCode(),
-            ['Content-Type' => 'application/json']
-        );
+        return new Response($registerPresenter->getData(), $registerPresenter->getStatusCode());
     }
 }
