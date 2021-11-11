@@ -3,9 +3,10 @@
 namespace Pricing\Infrastructure\Doctrine\Entity;
 
 use Pricing\Domain\Account\Model\AccountModel;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
-class Account
+class Account implements UserInterface
 {
     private string $id;
 
@@ -80,5 +81,20 @@ class Account
     final public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
+    }
+
+    final public function getSalt(): string
+    {
+        return '';
+    }
+
+    final public function eraseCredentials(): void
+    {
+        return;
+    }
+
+    final public function getUsername(): string
+    {
+        return $this->email;
     }
 }
