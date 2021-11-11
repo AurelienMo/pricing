@@ -16,7 +16,7 @@ final class Register
         private PasswordHasherInterface $passwordHasher
     ){}
 
-    public function execute(RegisterDTO $registerDTO): RegisterResponse
+    public function execute(RegisterDTO $registerDTO, RegisterPresenterInterface $registerPresenter): void
     {
         $response = new RegisterResponse();
         $isValid = $this->validateDTO($registerDTO, $response) && $this->checkExistAccount($registerDTO, $response);
@@ -28,7 +28,7 @@ final class Register
             }
         }
 
-        return $response;
+        $registerPresenter->present($response);
     }
 
     private function validateDTO(RegisterDTO $registerDTO, RegisterResponse $response): bool
