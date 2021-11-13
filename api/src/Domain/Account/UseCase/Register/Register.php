@@ -7,6 +7,7 @@ use Assert\LazyAssertionException;
 use Pricing\Domain\Account\Model\AccountModel;
 use Pricing\Domain\Account\Model\AccountRepositoryInterface;
 use Pricing\Domain\Account\Services\PasswordHasherInterface;
+use Pricing\Infrastructure\Doctrine\Entity\CfgTarification;
 use Pricing\Shared\Error\BuildLazyAssertionException;
 
 final class Register
@@ -18,6 +19,7 @@ final class Register
 
     public function execute(RegisterDTO $registerDTO, RegisterPresenterInterface $registerPresenter): void
     {
+        CfgTarification::createFromCli('name1 ', 'code 1');
         $response = new RegisterResponse();
         $isValid = $this->validateDTO($registerDTO, $response) && $this->checkExistAccount($registerDTO, $response);
         if ($isValid) {

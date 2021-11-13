@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f8025e80bfb0c560618be04d64c3bb2",
+    "content-hash": "91e25a1d77dc37b07f86ab6dfa71109a",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -7086,6 +7086,54 @@
                 }
             ],
             "time": "2021-11-09T12:41:09+00:00"
+        },
+        {
+            "name": "qossmic/deptrac-shim",
+            "version": "0.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qossmic/deptrac-shim.git",
+                "reference": "4ca9573975e04dd05b2bd120d32a6c0dd5a5add9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qossmic/deptrac-shim/zipball/4ca9573975e04dd05b2bd120d32a6c0dd5a5add9",
+                "reference": "4ca9573975e04dd05b2bd120d32a6c0dd5a5add9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "ext-zlib": "*",
+                "php": "^7.4 || 8.0.*"
+            },
+            "replace": {
+                "qossmic/deptrac": "self.version"
+            },
+            "suggest": {
+                "ext-dom": "For using the JUnit output formatter"
+            },
+            "bin": [
+                "deptrac"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Mönch",
+                    "email": "simon.moench@qossmic.com",
+                    "role": "maintainer"
+                }
+            ],
+            "description": "deptrac phar distribution",
+            "support": {
+                "issues": "https://github.com/qossmic/deptrac-shim/issues",
+                "source": "https://github.com/qossmic/deptrac-shim/tree/0.16.0"
+            },
+            "time": "2021-11-01T11:04:12+00:00"
         },
         {
             "name": "symfony/web-profiler-bundle",

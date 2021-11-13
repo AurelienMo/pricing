@@ -1,6 +1,7 @@
 name: CI/CD
 
 on:
+  push:
   pull_request:
     types:
       - opened
@@ -46,3 +47,7 @@ jobs:
       - name: PHPStan Static Analysis
         run: |
           cd ${{ env.PATH_RELEASES }}/ && vendor/bin/phpstan --error-format=prettyJson > phpstan-results.json || true
+
+      - name: Deptrac Analysis
+        run: |
+          cd ${{ env.PATH_RELEASES }}/ && vendor/bin/deptract analyze
