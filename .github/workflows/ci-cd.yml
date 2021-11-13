@@ -50,4 +50,4 @@ jobs:
 
       - name: Deptrac Analysis
         run: |
-          cd ${{ env.PATH_RELEASES }}/ && vendor/bin/deptract analyze
+          cd ${{ env.PATH_RELEASES }}/ && vendor/bin/deptrac analyze --formatter=json
