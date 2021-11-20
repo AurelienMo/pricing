@@ -6,6 +6,8 @@ use Pricing\Domain\Account\UseCase\Register\RegisterDTO;
 
 final class AccountModel
 {
+    private string|null $id;
+
     private string $email;
 
     private string $firstname;
@@ -55,5 +57,28 @@ final class AccountModel
     public function getPassword(): ?string
     {
         return $this->password;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    public static function createUserData(
+        string $id,
+        string $email,
+        string $firstname,
+        string $lastname
+    ): AccountModel {
+        $self = new self();
+        $self->id = $id;
+        $self->email = $email;
+        $self->firstname = $firstname;
+        $self->lastname = $lastname;
+
+        return $self;
     }
 }
