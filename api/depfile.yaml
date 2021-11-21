@@ -1,0 +1,57 @@
+paths:
+    - ./src
+    - ./vendor
+exclude_files:
+    - '#.*test.*#'
+layers:
+    -
+        name: Domain
+        collectors:
+            -
+                type: className
+                regex: .*Pricing\\Domain\\.*.
+    -
+        name: Infrastructure
+        collectors:
+            -
+                type: className
+                regex: .*Pricing\\Infrastructure\\.*
+    -
+        name: Presenter
+        collectors:
+            -
+                type: className
+                regex: .*Pricing\\Presenter\\.*
+    -
+        name: Shared
+        collectors:
+            -
+                type: className
+                regex: .*Pricing\\Shared\\.*
+    -
+        name: Vendor
+        collectors:
+            -
+                type: directory
+                regex: vendor/.*
+ruleset:
+    Domain:
+        - Domain
+        - Shared
+        - Vendor
+    Infrastructure:
+        - Domain
+        - Infrastructure
+        - Shared
+        - Vendor
+    Presenter:
+        - Domain
+        - Infrastructure
+        - Shared
+        - Vendor
+    Shared:
+        - Domain
+        - Infrastructure
+        - Presenter
+        - Shared
+        - Vendor

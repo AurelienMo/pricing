@@ -1,0 +1,81 @@
+Pricing\Infrastructure\Doctrine\Entity\CfgTarification:
+    tarif1:
+        __factory: { createFromCli: ['Niveau 1', 't1']}
+    tarif2:
+        __factory: { createFromCli: [ 'Niveau 2', 't2' ] }
+    tarif3:
+        __factory: { createFromCli: [ 'Niveau 3', 't3' ] }
+
+Pricing\Infrastructure\Doctrine\Entity\CfgCategoryCourse:
+    development:
+        __factory: { createFromCli: ['Developpement']}
+    data:
+        __factory: { createFromCli: [ 'Data' ] }
+    rh_gestion:
+        __factory: { createFromCli: [ 'RH & Gestion' ] }
+    network:
+        __factory: { createFromCli: [ 'Systèmes & Réseaux' ] }
+    marketting:
+        __factory: { createFromCli: [ 'Marketing & Communication' ] }
+    business:
+        __factory: { createFromCli: [ 'Business' ] }
+    learning:
+        __factory: { createFromCli: [ 'Pédagogie' ] }
+    project_management:
+        __factory: { createFromCli: [ 'Gestion de projet' ] }
+    design:
+        __factory: { createFromCli: [ 'Design' ] }
+
+Pricing\Infrastructure\Doctrine\Entity\CfgCourse:
+    web_developer:
+        __factory: { createFromCli: ['@development', 'Développeur Web', '/images/courses/dw.png'] }
+    archi_software:
+        __factory: { createFromCli: [ '@development', 'Architecte Logiciel', 'img' ] }
+    php_sf:
+        __factory: { createFromCli: [ '@development', "Développeur d'application - PHP/Symfony", '/images/courses/php_sf.png' ] }
+    ios:
+        __factory: { createFromCli: [ '@development', "Développeur d'application - iOS", 'img' ] }
+    android:
+        __factory: { createFromCli: [ '@development', "Développeur d'application - Androdi", 'img' ] }
+    salesforce:
+        __factory: { createFromCli: [ '@development', "Développeur Salesforce", 'img' ] }
+    java:
+        __factory: { createFromCli: [ '@development', "Développeur d'application - Java", 'img' ] }
+    javascript_react:
+        __factory: { createFromCli: [ '@development', "Développeur d'application - JavaScript React", 'img' ] }
+    python:
+        __factory: { createFromCli: [ '@development', "Développeur d'application - Python", 'img' ] }
+
+Pricing\Infrastructure\Doctrine\Entity\CfgProject:
+    web_developer_1:
+        __factory: { createFromCli: [ '@web_developer', '@tarif1', 'Prenez en main votre formation de développeur web', 1]}
+    web_developer_2:
+        __factory: { createFromCli: [ '@web_developer', '@tarif2', 'Transformez une maquette en site web avec HTML & CSS', 2] }
+    web_developer_3:
+        __factory: { createFromCli: [ '@web_developer', '@tarif2', 'Dynamiser une page web avec des animations css', 3 ] }
+    web_developer_4:
+        __factory: { createFromCli: [ '@web_developer', '@tarif2', 'Optimisez un site web existant', 4 ] }
+    web_developer_5:
+        __factory: { createFromCli: [ '@web_developer', '@tarif2', 'Construisez un site e-commerce en Javascript', 5 ] }
+    web_developer_6:
+        __factory: { createFromCli: [ '@web_developer', '@tarif3', "Construisez une API sécurisée pour une application d'avis gastronomiques", 6 ] }
+    web_developer_7:
+        __factory: { createFromCli: [ '@web_developer', '@tarif3', "Créez un réseau social d'entreprise", 7 ] }
+    php_sf_1:
+        __factory: { createFromCli: [ '@php_sf', '@tarif1', "Définissez votre stratégie d'apprentissage", 1 ] }
+    php_sf_2:
+        __factory: { createFromCli: [ '@php_sf', '@tarif1', "Intégrez un thème Wordpress pour un client", 2 ] }
+    php_sf_3:
+        __factory: { createFromCli: [ '@php_sf', '@tarif1', "Analysez les besoins de votre client pour son festival de films", 3 ] }
+    php_sf_4:
+        __factory: { createFromCli: [ '@php_sf', '@tarif2', "Concez la solution technique d'une application de restauration en ligne, ExpressFood", 4 ] }
+    php_sf_5:
+        __factory: { createFromCli: [ '@php_sf', '@tarif2', "Créez votre premier blog en PHP", 5 ] }
+    php_sf_6:
+        __factory: { createFromCli: [ '@php_sf', '@tarif3', "Développez de A à Z le site communautaire SnowTricks", 6 ] }
+    php_sf_7:
+        __factory: { createFromCli: [ '@php_sf', '@tarif3', "Créez un web service exposant une api", 7 ] }
+    php_sf_8:
+        __factory: { createFromCli: [ '@php_sf', '@tarif2', "Améliorez une application existant ToDo & Co", 8 ] }
+    php_sf_9:
+        __factory: { createFromCli: [ '@php_sf', '@tarif2', "Effectuez un stage ou construisez une veille technologique", 1 ] }

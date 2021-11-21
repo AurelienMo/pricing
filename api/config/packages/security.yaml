@@ -1,27 +1,45 @@
 security:
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
-    password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    encoders:
+        Pricing\Infrastructure\Doctrine\Entity\Account: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        entity_provider:
+            entity:
+                class: Pricing\Infrastructure\Doctrine\Entity\Account
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            lazy: true
-            provider: users_in_memory
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api_token_refresh:
+            pattern: ^/api/token/refresh
+            stateless: true
+            provider: entity_provider
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+        api_user_create:
+            pattern: ^/api/users
+            stateless: true
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
+        api:
+            pattern: ^/api
+            stateless: true
+            provider: entity_provider
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/api/login, roles: PUBLIC_ACCESS }
+         - { path: ^/api/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: ['POST'] }
+         - { path: ^/api/token/refresh, roles: PUBLIC_ACCESS }
+         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
