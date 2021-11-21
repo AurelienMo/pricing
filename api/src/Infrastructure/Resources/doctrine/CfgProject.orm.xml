@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Pricing\Infrastructure\Doctrine\Entity\CfgProject" table="cfg_project">
+    <entity name="Pricing\Infrastructure\Doctrine\Entity\CfgProject" table="cfg_project" repository-class="Pricing\Infrastructure\Doctrine\Repository\CfgProjectRepository">
         <id name="id" column="id" type="string">
             <generator strategy="NONE" />
         </id>
@@ -12,10 +12,10 @@
         <field name="createdAt" column="created_at" type="datetime" nullable="false" />
         <field name="updatedAt" column="updated_at" type="datetime" nullable="false" />
         <field name="number" column="number" type="integer" nullable="false" />
-        <many-to-one field="cfgCourse" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgCourse">
+        <many-to-one field="cfgCourse" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgCourse" fetch="EAGER" inversed-by="projects">
             <join-column name="cfg_course_id" referenced-column-name="id" />
         </many-to-one>
-        <many-to-one field="cfgTarification" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgTarification">
+        <many-to-one field="cfgTarification" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgTarification" fetch="EAGER">
             <join-column name="cfg_tarification_id" referenced-column-name="id" />
         </many-to-one>
     </entity>

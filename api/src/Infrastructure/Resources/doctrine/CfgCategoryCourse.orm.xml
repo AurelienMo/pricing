@@ -11,5 +11,6 @@
         <field name="name" column="name" nullable="false"/>
         <field name="createdAt" column="created_at" type="datetime" nullable="false" />
         <field name="updatedAt" column="updated_at" type="datetime" nullable="false" />
+        <one-to-many field="courses" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgCourse" mapped-by="categoryCourse" fetch="EAGER"/>
     </entity>
 </doctrine-mapping>

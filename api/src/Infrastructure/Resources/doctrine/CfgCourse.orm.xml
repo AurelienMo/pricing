@@ -12,8 +12,9 @@
         <field name="image" column="image" nullable="false"/>
         <field name="createdAt" column="created_at" type="datetime" nullable="false" />
         <field name="updatedAt" column="updated_at" type="datetime" nullable="false" />
-        <many-to-one field="categoryCourse" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgCategoryCourse">
+        <many-to-one field="categoryCourse" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgCategoryCourse" fetch="EAGER" inversed-by="courses">
             <join-column name="cfg_category_course_id" referenced-column-name="id" />
         </many-to-one>
+        <one-to-many field="projects" target-entity="Pricing\Infrastructure\Doctrine\Entity\CfgProject" mapped-by="cfgCourse" fetch="EAGER" />
     </entity>
 </doctrine-mapping>

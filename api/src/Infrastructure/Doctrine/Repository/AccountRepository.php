@@ -7,9 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Pricing\Domain\Account\Model\AccountModel;
 use Pricing\Domain\Account\Model\AccountRepositoryInterface;
 use Pricing\Infrastructure\Doctrine\Entity\Account;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class AccountRepository extends ServiceEntityRepository implements AccountRepositoryInterface
 {
@@ -32,11 +30,8 @@ class AccountRepository extends ServiceEntityRepository implements AccountReposi
 
     final public function getUserInformationConnected(): AccountModel
     {
-        $account = $this->findOneBy(['id' => $this->security->getUser()->getId()]);
-
-        if (!$account instanceof Account) {
-            throw new NotFoundHttpException('User not found');
-        }
+        /** @var Account $account */
+        $account = $this->security->getUser();
 
         return AccountModel::createUserData(
             $account->getId(),
