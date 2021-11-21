@@ -2,21 +2,30 @@
 
 namespace Pricing\Infrastructure\Doctrine\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Uid\Uuid;
 
 class CfgCourse
 {
     private string $id;
 
-    private string $name;
+    private string $name = '';
 
     private CfgCategoryCourse $categoryCourse;
 
-    private string $image;
+    private string $image = '';
 
     private \DateTime $createdAt;
 
     private \DateTime $updatedAt;
+
+    private Collection $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     public static function createFromCli(
         CfgCategoryCourse $categoryCourse,
@@ -62,5 +71,10 @@ class CfgCourse
     final public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
+    }
+
+    final public function getProjects(): Collection
+    {
+        return $this->projects;
     }
 }

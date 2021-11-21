@@ -2,6 +2,8 @@
 
 namespace Pricing\Infrastructure\Doctrine\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Uid\Uuid;
 
 class CfgCategoryCourse
@@ -13,6 +15,13 @@ class CfgCategoryCourse
     private \DateTime $updatedAt;
 
     private string $name;
+
+    private Collection $courses;
+
+    public function __construct()
+    {
+        $this->courses = new ArrayCollection();
+    }
 
     public static function createFromCli(string $name): CfgCategoryCourse
     {
@@ -43,5 +52,10 @@ class CfgCategoryCourse
     final public function getName(): string
     {
         return $this->name;
+    }
+
+    final public function getCourses(): Collection
+    {
+        return $this->courses;
     }
 }
